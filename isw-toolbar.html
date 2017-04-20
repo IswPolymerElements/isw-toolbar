@@ -59,6 +59,10 @@ If the metrics property gets controlled by e.g. iron-resizable-behavior, the too
 				margin: 0 8px;
 			}
 
+			.nav-icon ::slotted( a ) {
+				display: inline-block;
+			}
+
 			:host([metrics="tablet"]) .nav-icon {
 				margin: 0 8px 0 16px;
 			}
@@ -70,19 +74,23 @@ If the metrics property gets controlled by e.g. iron-resizable-behavior, the too
 			}
 
 
-			.middle.row,
-			.bottom.row {
+			.middle,
+			.bottom {
 				padding: 0 16px 0 72px;
 			}
 
-			:host([metrics="tablet"]) .middle.row,
-			:host([metrics="tablet"]) .bottom.row {
+			:host([metrics="tablet"]) .middle,
+			:host([metrics="tablet"]) .bottom {
 				padding: 0 16px 0 80px;
 			}
 
 
 			.action-icon {
 				margin: 0 8px;
+			}
+
+			.action-icon ::slotted( a ) {
+				display: inline-block;
 			}
 
 			:host([metrics="tablet"]) .action-icon {
