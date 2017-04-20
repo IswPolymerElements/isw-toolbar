@@ -1,0 +1,35 @@
+<link rel="import" href="../polymer/polymer.html">
+
+<!--
+`isw-toolbar`
+Material Design Polymer 2.0 Toolbar.
+
+@demo demo/index.html
+-->
+
+<dom-module id="isw-toolbar">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <h2>Hello [[prop1]]</h2>
+  </template>
+
+  <script>
+    class MyElement extends Polymer.Element {
+      static get is() { return 'isw-toolbar'; }
+      static get properties() {
+        return {
+          prop1: {
+            type: String,
+            value: 'isw-toolbar'
+          }
+        };
+      }
+    }
+
+    window.customElements.define(MyElement.is, MyElement);
+  </script>
+</dom-module>
