@@ -2,37 +2,29 @@
 
 Material Design Polymer 2.0 Toolbar.
 
-## Install the Polymer-CLI
+Since paper-toolbar is deprecated, and making an app-toolbar MD takes some styling - DRY.
 
-First, make sure you have the [Polymer CLI](https://www.npmjs.com/package/polymer-cli) installed. Then run `polymer serve` to serve your application locally.
+```html
+<isw-toolbar rows="2">
+  <paper-icon-button slot="nav-icon" icon="menu"></paper-icon-button>
 
-## Viewing Your Application
+  <div slot="middle-row">ISW Toolbar Demo</div>
 
-```
-$ polymer serve
-```
+  <paper-icon-button slot="action-icon" icon="search"></paper-icon-button>
+  <paper-icon-button slot="action-icon" icon="refresh"></paper-icon-button>
+  <paper-icon-button slot="action-icon" icon="more-vert"></paper-icon-button>
 
-## Building Your Application
-
-```
-$ polymer build
-```
-
-This will create a `build/` folder with `bundled/` and `unbundled/` sub-folders
-containing a bundled (Vulcanized) and unbundled builds, both run through HTML,
-CSS, and JS optimizers.
-
-You can serve the built versions by giving `polymer serve` a folder to serve
-from:
-
-```
-$ polymer serve build/bundled
+  <paper-fab slot="fab" icon="add" mini></paper-fab>
+</isw-toolbar>
 ```
 
-## Running Tests
+It's not responsive by default, but it can be switched between `mobile` and `tablet` metrics.
+https://material.io/guidelines/layout/structure.html#structure-app-bar - metrics.
 
-```
-$ polymer test
+```html
+<isw-toolbar metrics="tablet">
+  <div slot="top-row">ISW Toolbar Demo</div>
+</isw-toolbar>
 ```
 
-Your application is already set up to be tested via [web-component-tester](https://github.com/Polymer/web-component-tester). Run `polymer test` to run your application's test suite locally.
+If the metrics property gets controlled by e.g. iron-resizable-behavior, the toolbar gets responsive.
