@@ -1,5 +1,7 @@
 <link rel="import" href="../polymer/polymer.html">
 
+<link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
+
 <!--
 `isw-toolbar`
 Material Design Polymer 2.0 Toolbar.
@@ -8,28 +10,107 @@ Material Design Polymer 2.0 Toolbar.
 -->
 
 <dom-module id="isw-toolbar">
-  <template>
-    <style>
-      :host {
-        display: block;
-      }
-    </style>
-    <h2>Hello [[prop1]]</h2>
-  </template>
+	<template>
+		<style>
+			:host {
+				display: block;
+				color: var(--dark-theme-text-color);
+				background: var(--primary-color);
 
-  <script>
-    class MyElement extends Polymer.Element {
-      static get is() { return 'isw-toolbar'; }
-      static get properties() {
-        return {
-          prop1: {
-            type: String,
-            value: 'isw-toolbar'
-          }
-        };
-      }
-    }
+				font-size: 20px;
+			}
 
-    window.customElements.define(MyElement.is, MyElement);
-  </script>
+			.row {
+				height: 64px;
+				@apply --layout-horizontal;
+				@apply --layout-center;
+			}
+
+			.nav-icon {
+				width: 40px;
+				margin: 0 8px;
+			}
+
+			.top.row .content {
+				margin: 0 16px;
+				@apply --layout-flex;
+			}
+
+			.middle.row .content,
+			.bottom.row .content {
+				margin: 0 16px 0 72px;
+				@apply --layout-flex;
+			}
+
+			.action-icon {
+				margin: 0 8px;
+			}
+
+			::slotted(paper-fab) {
+				position: absolute;
+				bottom: -28px;
+				left: 16px;
+			}
+
+			::slotted(paper-fab[mini]) {
+				bottom: -20px;
+			}
+
+			[hidden] {
+				display: none;
+			}
+		</style>
+
+		<div class="top row">
+			<div class="nav-icon">
+				<slot name="nav-icon"></slot>
+			</div>
+			<div class="content">
+				<slot name="top-row"></slot>
+			</div>
+			<div class="action-icon">
+				<slot name="action-icon"></slot>
+			</div>
+		</div>
+
+		<div class="middle row" hidden="[[_middleRowHidden(rows)]]">
+			<div class="content">
+				<slot name="middle-row"></slot>
+			</div>
+		</div>
+
+		<div class="bottom row" hidden="[[_bottomRowHidden(rows)]]">
+			<slot name="bottom-row"></slot>
+		</div>
+
+		<slot name="fab"></slot>
+	</template>
+
+	<script>
+		class IswToolbar extends Polymer.Element {
+			static get is() {
+				return 'isw-toolbar';
+			}
+
+			static get properties() {
+				return {
+					rows: {
+						type: Number,
+						notify: true,
+						value: 1
+					}
+				};
+			}
+
+			_middleRowHidden( rows ) {
+				return rows < 2;
+			}
+
+			_bottomRowHidden( rows ) {
+				return rows < 3;
+			}
+		}
+
+		window.customElements.define( IswToolbar.is, IswToolbar );
+	</script>
 </dom-module>
