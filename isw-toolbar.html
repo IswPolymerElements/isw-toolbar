@@ -16,35 +16,56 @@ Material Design Polymer 2.0 Toolbar.
 				display: block;
 				color: var(--dark-theme-text-color);
 				background: var(--primary-color);
-
 				font-size: 20px;
 			}
 
+
 			.row {
-				height: 64px;
 				@apply --layout-horizontal;
 				@apply --layout-center;
+				height: 56px;
 			}
+
+			:host([metrics="tablet"]) .row {
+				height: 64px;
+			}
+
 
 			.nav-icon {
 				width: 40px;
 				margin: 0 8px;
 			}
 
-			.top.row .content {
-				margin: 0 16px;
-				@apply --layout-flex;
+			:host([metrics="tablet"]) .nav-icon {
+				margin: 0 8px 0 16px;
 			}
 
-			.middle.row .content,
-			.bottom.row .content {
-				margin: 0 16px 0 72px;
+
+			.top.row .content {
 				@apply --layout-flex;
+				margin: 0 16px;
 			}
+
+
+			.middle.row,
+			.bottom.row {
+				padding: 0 16px 0 72px;
+			}
+
+			:host([metrics="tablet"]) .middle.row,
+			:host([metrics="tablet"]) .bottom.row {
+				padding: 0 16px 0 80px;
+			}
+
 
 			.action-icon {
 				margin: 0 8px;
 			}
+
+			:host([metrics="tablet"]) .action-icon {
+				margin: 0 16px 0 8px;
+			}
+
 
 			::slotted(paper-fab) {
 				position: absolute;
@@ -56,6 +77,11 @@ Material Design Polymer 2.0 Toolbar.
 				bottom: -20px;
 			}
 
+			:host([metrics="tablet"]) ::slotted(paper-fab) {
+				left: 24px;
+			}
+
+
 			[hidden] {
 				display: none;
 			}
@@ -65,18 +91,18 @@ Material Design Polymer 2.0 Toolbar.
 			<div class="nav-icon">
 				<slot name="nav-icon"></slot>
 			</div>
+
 			<div class="content">
 				<slot name="top-row"></slot>
 			</div>
+
 			<div class="action-icon">
 				<slot name="action-icon"></slot>
 			</div>
 		</div>
 
 		<div class="middle row" hidden="[[_middleRowHidden(rows)]]">
-			<div class="content">
-				<slot name="middle-row"></slot>
-			</div>
+			<slot name="middle-row"></slot>
 		</div>
 
 		<div class="bottom row" hidden="[[_bottomRowHidden(rows)]]">
@@ -94,18 +120,37 @@ Material Design Polymer 2.0 Toolbar.
 
 			static get properties() {
 				return {
+					/**
+					 * The number of rows that should be displayed (1-3).
+					 */
 					rows: {
 						type: Number,
 						notify: true,
 						value: 1
+					},
+					/**
+					 * The metrics that should be uses. Either "mobile" or "tablet".
+					 * Combine with iron-resizable-behavior for responsive toolbar.
+					 */
+					metrics: {
+						type: String,
+						notify: true,
+						reflectToAttribute: true,
+						value: 'mobile'
 					}
 				};
 			}
 
+			/**
+			 * Calculates if middle row is hidden.
+			 */
 			_middleRowHidden( rows ) {
 				return rows < 2;
 			}
 
+			/**
+			 * Calculates if bottom row is hidden.
+			 */
 			_bottomRowHidden( rows ) {
 				return rows < 3;
 			}

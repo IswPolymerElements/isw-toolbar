@@ -43,7 +43,7 @@
 			}
 		</style>
 
-		<app-drawer-layout fullbleed>
+		<app-drawer-layout responsive-width="1024px" fullbleed>
 			<app-drawer slot="drawer">
 				<div id="drawer"></div>
 			</app-drawer>
@@ -51,7 +51,7 @@
 			<app-header-layout fixed condenses>
 				<app-header slot="header">
 
-					<isw-toolbar rows="2">
+					<isw-toolbar rows="2" metrics="tablet">
 						<paper-icon-button slot="nav-icon" icon="menu"></paper-icon-button>
 
 						<div slot="middle-row">ISW Toolbar Demo</div>
@@ -79,7 +79,6 @@
 </dom-module>
 
 <demo-element-view></demo-element-view>
-
 
 </body>
 </html>
