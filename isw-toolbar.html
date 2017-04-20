@@ -11,7 +11,7 @@ Since paper-toolbar is deprecated, and making an app-toolbar MD takes some styli
     <isw-toolbar rows="2">
       <paper-icon-button slot="nav-icon" icon="menu"></paper-icon-button>
 
-      <div slot="middle-row">ISW Toolbar Demo</div>
+      <span slot="middle">ISW Toolbar Demo</span>
 
       <paper-icon-button slot="action-icon" icon="search"></paper-icon-button>
       <paper-icon-button slot="action-icon" icon="refresh"></paper-icon-button>
@@ -24,10 +24,16 @@ It's not responsive by default, but it can be switched between `mobile` and `tab
 https://material.io/guidelines/layout/structure.html#structure-app-bar - metrics.
 
     <isw-toolbar metrics="tablet">
-      <div slot="top-row">ISW Toolbar Demo</div>
+      <span slot="top">ISW Toolbar Demo</span>
     </isw-toolbar>
 
 If the metrics property gets controlled by e.g. iron-resizable-behavior, the toolbar gets responsive.
+
+If the fab is mini and wrapped in an a tag, the a tag also needs an mini attribute for correct positioning.
+
+    <a slot="fab" href="#" mini>
+      <paper-fab icon="add" mini></paper-fab>
+    </a>
 
 @demo demo/index.html
 -->
@@ -59,7 +65,7 @@ If the metrics property gets controlled by e.g. iron-resizable-behavior, the too
 				margin: 0 8px;
 			}
 
-			.nav-icon ::slotted( a ) {
+			slot[name='nav-icon']::slotted( a ) {
 				display: inline-block;
 				color: inherit;
 			}
@@ -90,7 +96,7 @@ If the metrics property gets controlled by e.g. iron-resizable-behavior, the too
 				margin: 0 8px;
 			}
 
-			.action-icon ::slotted( a ) {
+			slot[name='action-icon']::slotted( a ) {
 				display: inline-block;
 				color: inherit;
 			}
@@ -100,17 +106,17 @@ If the metrics property gets controlled by e.g. iron-resizable-behavior, the too
 			}
 
 
-			::slotted(paper-fab) {
+			slot[name='fab']::slotted(*) {
 				position: absolute;
 				bottom: -28px;
 				left: 16px;
 			}
 
-			::slotted(paper-fab[mini]) {
+			slot[name='fab']::slotted([mini]) {
 				bottom: -20px;
 			}
 
-			:host([metrics="tablet"]) ::slotted(paper-fab) {
+			:host([metrics="tablet"]) slot[name='fab']::slotted(*) {
 				left: 24px;
 			}
 
@@ -126,7 +132,7 @@ If the metrics property gets controlled by e.g. iron-resizable-behavior, the too
 			</div>
 
 			<div class="content">
-				<slot name="top-row"></slot>
+				<slot name="top"></slot>
 			</div>
 
 			<div class="action-icon">
@@ -135,11 +141,11 @@ If the metrics property gets controlled by e.g. iron-resizable-behavior, the too
 		</div>
 
 		<div class="middle row" hidden="[[_middleRowHidden(rows)]]">
-			<slot name="middle-row"></slot>
+			<slot name="middle"></slot>
 		</div>
 
 		<div class="bottom row" hidden="[[_bottomRowHidden(rows)]]">
-			<slot name="bottom-row"></slot>
+			<slot name="bottom"></slot>
 		</div>
 
 		<slot name="fab"></slot>

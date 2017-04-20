@@ -8,7 +8,7 @@ Since paper-toolbar is deprecated, and making an app-toolbar MD takes some styli
 <isw-toolbar rows="2">
   <paper-icon-button slot="nav-icon" icon="menu"></paper-icon-button>
 
-  <div slot="middle-row">ISW Toolbar Demo</div>
+  <span slot="middle">ISW Toolbar Demo</span>
 
   <paper-icon-button slot="action-icon" icon="search"></paper-icon-button>
   <paper-icon-button slot="action-icon" icon="refresh"></paper-icon-button>
@@ -23,8 +23,16 @@ https://material.io/guidelines/layout/structure.html#structure-app-bar - metrics
 
 ```html
 <isw-toolbar metrics="tablet">
-  <div slot="top-row">ISW Toolbar Demo</div>
+  <span slot="top">ISW Toolbar Demo</span>
 </isw-toolbar>
 ```
 
 If the metrics property gets controlled by e.g. iron-resizable-behavior, the toolbar gets responsive.
+
+If the fab is mini and wrapped in an a tag, the a tag also needs an mini attribute for correct positioning.
+
+```html
+<a slot="fab" href="#" mini>
+  <paper-fab icon="add" mini></paper-fab>
+</a>
+```
