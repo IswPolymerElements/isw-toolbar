@@ -19,16 +19,26 @@ Since paper-toolbar is deprecated, and making an app-toolbar MD takes some styli
 ```
 
 ### Responsive
-It's not responsive by default, but it can be switched between `mobile` and `tablet` metrics.
+It's not responsive by default, but `device` and `orientation` to use can be set.
 https://material.io/guidelines/layout/structure.html#structure-app-bar - metrics.
 
 ```html
-<isw-toolbar metrics="tablet">
+<isw-toolbar device="tablet" orientation="landscape">
   <span slot="top">ISW Toolbar Demo</span>
 </isw-toolbar>
 ```
 
-If the metrics property gets controlled by e.g. iron-resizable-behavior, the toolbar gets responsive.
+If the metrics properties gets controlled by e.g. isw-responsive-behavior, the toolbar gets responsive.
+
+```html
+<isw-toolbar device="[[device]]" orientation="[[orientation]]">
+  <span slot="top">ISW Toolbar Demo</span>
+</isw-toolbar>
+...
+class ToolbarDemo extends Polymer.mixinBehaviors([ iswResponsiveBehavior ], Polymer.Element ) {
+  ...
+}
+```
 
 ### Styling
 The following custom properties are available for styling:
