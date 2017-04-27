@@ -86,7 +86,8 @@ If the fab is mini and wrapped in an a tag, the a tag also needs an mini attribu
 				height: 56px;
 			}
 
-			:host([metrics="tablet"]) .row {
+			:host([device="tablet"]) .row,
+			:host([device="desktop"]) .row {
 				height: 64px;
 			}
 
@@ -101,7 +102,8 @@ If the fab is mini and wrapped in an a tag, the a tag also needs an mini attribu
 				display: inline-block;
 			}
 
-			:host([metrics="tablet"]) .nav-icon {
+			:host([device="tablet"]) .nav-icon,
+			:host([device="desktop"]) .nav-icon {
 				margin: 0 8px 0 16px;
 			}
 
@@ -117,8 +119,10 @@ If the fab is mini and wrapped in an a tag, the a tag also needs an mini attribu
 				padding: 0 16px 0 72px;
 			}
 
-			:host([metrics="tablet"]) .middle,
-			:host([metrics="tablet"]) .bottom {
+			:host([device="tablet"]) .middle,
+			:host([device="desktop"]) .middle,
+			:host([device="tablet"]) .bottom,
+			:host([device="desktop"]) .bottom {
 				padding: 0 16px 0 80px;
 			}
 
@@ -132,7 +136,8 @@ If the fab is mini and wrapped in an a tag, the a tag also needs an mini attribu
 				display: inline-block;
 			}
 
-			:host([metrics="tablet"]) .action-icon {
+			:host([device="tablet"]) .action-icon,
+			:host([device="desktop"]) .action-icon {
 				margin: 0 16px 0 8px;
 			}
 
@@ -148,7 +153,8 @@ If the fab is mini and wrapped in an a tag, the a tag also needs an mini attribu
 				bottom: -20px;
 			}
 
-			:host([metrics="tablet"]) slot[name='fab']::slotted(*) {
+			:host([device="tablet"]) slot[name='fab']::slotted(*),
+			:host([device="desktop"]) slot[name='fab']::slotted(*) {
 				left: 24px;
 			}
 
@@ -200,10 +206,10 @@ If the fab is mini and wrapped in an a tag, the a tag also needs an mini attribu
 						value: 1
 					},
 					/**
-					 * The metrics that should be uses. Either "mobile" or "tablet".
-					 * Combine with iron-resizable-behavior for a responsive toolbar.
+					 * The device metrics that should be uses. Either "mobile", "tablet" or "desktop".
+					 * Combine with isw-responsive-behavior for a responsive toolbar.
 					 */
-					metrics: {
+					device: {
 						type: String,
 						notify: true,
 						reflectToAttribute: true,
