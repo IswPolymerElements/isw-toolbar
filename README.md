@@ -50,6 +50,12 @@ Custom property | Default
 `--isw-toolbar-button-icon-color` | --dark-theme-text-color
 `--isw-toolbar-fab-icon-color` | --dark-theme-text-color
 
+
+Available mixins:
+* `--isw-toolbar-row-mobile`
+* `--isw-toolbar-row-tablet`
+* `--isw-toolbar-row-desktop`
+
 Default styling via paper-styles properties:
 
 ```css

@@ -48,6 +48,11 @@ Custom property | Default
 `--isw-toolbar-button-icon-color` | --dark-theme-text-color
 `--isw-toolbar-fab-icon-color` | --dark-theme-text-color
 
+Available mixins:
+* `--isw-toolbar-row-mobile`
+* `--isw-toolbar-row-tablet`
+* `--isw-toolbar-row-desktop`
+
 Default styling via paper-styles properties:
 
     isw-toolbar {
@@ -88,25 +93,50 @@ If the fab is mini and wrapped in an a tag, the a tag also needs an mini attribu
 				--iron-icon-fill-color: var(--isw-toolbar-font-color, var(--dark-theme-text-color));
 			}
 
+			.topContainer {
+				position: relative;
+				@apply --layout-horizontal;
+			}
+
+
 			.row {
+				@apply --layout-flex;
 				@apply --layout-horizontal;
 				@apply --layout-center;
 				height: 56px;
+				padding: 0 16px 0 72px;
+			}
+
+			:host([device="mobile"]) .row {
+				@apply --isw-toolbar-row-mobile;
 			}
 
 			:host([device="mobile"][orientation="landscape"]) .row {
 				height: 48px;
 			}
 
-			:host([device="tablet"]) .row,
+			:host([device="tablet"]) .row {
+				height: 64px;
+				padding: 0 16px 0 80px;
+				@apply --isw-toolbar-row-tablet;
+			}
+
 			:host([device="desktop"]) .row {
 				height: 64px;
+				padding: 0 16px 0 80px;
+				@apply --isw-toolbar-row-desktop;
 			}
 
 
 			.nav-icon {
+				@apply --layout-horizontal;
+				@apply --layout-center;
+				position: absolute;
+				top: 0;
+				bottom: 0;
+				left: 0;
 				width: 40px;
-				margin: 0 8px;
+				margin-left: 8px;
 				--iron-icon-fill-color: var(--isw-toolbar-button-icon-color, var(--dark-theme-text-color));
 			}
 
@@ -116,30 +146,13 @@ If the fab is mini and wrapped in an a tag, the a tag also needs an mini attribu
 
 			:host([device="tablet"]) .nav-icon,
 			:host([device="desktop"]) .nav-icon {
-				margin: 0 8px 0 16px;
-			}
-
-
-			.top.row .content {
-				@apply --layout-flex;
-				margin: 0 16px;
-			}
-
-
-			.middle,
-			.bottom {
-				padding: 0 16px 0 72px;
-			}
-
-			:host([device="tablet"]) .middle,
-			:host([device="desktop"]) .middle,
-			:host([device="tablet"]) .bottom,
-			:host([device="desktop"]) .bottom {
-				padding: 0 16px 0 80px;
+				margin-left: 16px;
 			}
 
 
 			.action-icon {
+				@apply --layout-horizontal;
+				@apply --layout-center;
 				margin: 0 8px;
 				--iron-icon-fill-color: var(--isw-toolbar-button-icon-color, var(--dark-theme-text-color));
 			}
@@ -176,12 +189,12 @@ If the fab is mini and wrapped in an a tag, the a tag also needs an mini attribu
 			}
 		</style>
 
-		<div class="top row">
+		<div class="topContainer">
 			<div class="nav-icon">
 				<slot name="nav-icon"></slot>
 			</div>
 
-			<div class="content">
+			<div class="top row">
 				<slot name="top"></slot>
 			</div>
 
