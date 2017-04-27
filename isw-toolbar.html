@@ -86,6 +86,10 @@ If the fab is mini and wrapped in an a tag, the a tag also needs an mini attribu
 				height: 56px;
 			}
 
+			:host([device="mobile"][orientation="landscape"]) .row {
+				height: 48px;
+			}
+
 			:host([device="tablet"]) .row,
 			:host([device="desktop"]) .row {
 				height: 64px;
@@ -206,7 +210,7 @@ If the fab is mini and wrapped in an a tag, the a tag also needs an mini attribu
 						value: 1
 					},
 					/**
-					 * The device metrics that should be uses. Either "mobile", "tablet" or "desktop".
+					 * The device metrics that should be used. Either "mobile", "tablet" or "desktop".
 					 * Combine with isw-responsive-behavior for a responsive toolbar.
 					 */
 					device: {
@@ -214,6 +218,16 @@ If the fab is mini and wrapped in an a tag, the a tag also needs an mini attribu
 						notify: true,
 						reflectToAttribute: true,
 						value: 'mobile'
+					},
+					/**
+					 * The screen orientation that should be used. Either "portrait" or "landscape".
+					 * Combine with isw-responsive-behavior for a responsive toolbar.
+					 */
+					orientation: {
+						type: String,
+						notify: true,
+						reflectToAttribute: true,
+						value: 'portrait'
 					}
 				};
 			}
