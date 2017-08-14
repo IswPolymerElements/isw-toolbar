@@ -167,6 +167,14 @@ If the fab is mini and wrapped in an a tag, the a tag also needs an mini attribu
 			}
 
 
+			.tabs {
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				right: 0;
+			}
+
+
 			slot[name='fab']::slotted(*) {
 				position: absolute;
 				bottom: -28px;
@@ -209,6 +217,10 @@ If the fab is mini and wrapped in an a tag, the a tag also needs an mini attribu
 
 		<div class="bottom row" hidden="[[_bottomRowHidden(rows)]]">
 			<slot name="bottom"></slot>
+		</div>
+
+		<div class="tabs">
+			<slot name="tabs"></slot>
 		</div>
 
 		<slot name="fab"></slot>
