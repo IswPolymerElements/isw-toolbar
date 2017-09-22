@@ -4,7 +4,8 @@
   "main": "isw-toolbar.html",
   "dependencies": {
     "polymer": "Polymer/polymer#^2.0.0",
-    "iron-flex-layout": "PolymerElements/iron-flex-layout#^2.0.0"
+    "iron-flex-layout": "PolymerElements/iron-flex-layout#^2.0.0",
+    "isw-responsive": "IswPolymerElements/isw-responsive"
   },
   "devDependencies": {
     "iron-demo-helpers": "PolymerElements/iron-demo-helpers#^2.0.0",
